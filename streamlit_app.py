@@ -23,15 +23,38 @@ warnings.filterwarnings('ignore')
 
 # Indonesian stopwords to filter out
 INDONESIAN_STOPWORDS = {
-    'dan', 'di', 'ke', 'yang', 'dari', 'untuk', 'adalah', 'dengan', 'akan',
-    'telah', 'saya', 'kami', 'dia', 'mereka', 'ini', 'itu', 'pada', 'atau',
-    'jika', 'maka', 'seperti', 'antara', 'lain', 'juga', 'tidak', 'tetapi',
-    'namun', 'dalam', 'oleh', 'tentang', 'sebelum', 'sesudah', 'selama',
-    'sampai', 'saat', 'ketika', 'sedangkan', 'sementara', 'hanya', 'cuma',
-    'pun', 'pula', 'pun', 'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih',
-    'ah', 'oh', 'eh', 'nih', 'tuh', 'dong', 'nah', 'lho', 'kok', 'dik', 'mas',
-    'pak', 'bu', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
-    'ke', 'ke', 'ke', 'nya', 'ku', 'mu', 'kamu', 'mu', 'nya', 'nya'
+    # Preposisi
+    'dan', 'di', 'ke', 'dari', 'untuk', 'dengan', 'pada', 'dalam', 'oleh', 'tentang',
+    'antara', 'sesudah', 'sebelum', 'selama', 'sampai', 'hingga', 'melalui', 'menurut',
+    
+    # Konjungsi
+    'yang', 'atau', 'tetapi', 'namun', 'sedangkan', 'sementara', 'jika', 'maka',
+    'karena', 'sebab', 'agar', 'supaya', 'lalu', 'kemudian',
+    
+    # Pronoun/Kata ganti
+    'saya', 'kami', 'dia', 'mereka', 'ini', 'itu', 'kamu', 'mu', 'ku', 'nya',
+    'ane', 'gue', 'elo', 'situ', 'ente', 'beliau',
+    
+    # Kata kerja bantu
+    'akan', 'telah', 'sedang', 'pernah', 'bisa', 'dapat', 'bisa', 'seperti', 'adalah',
+    'menjadi', 'ada', 'terjadi',
+    
+    # Adjective/Adverb umum
+    'hanya', 'juga', 'sangat', 'cukup', 'amat', 'agak', 'terlalu', 'saja', 'lain',
+    'sama', 'satu', 'dua', 'tiga', 'empat', 'lima',
+    
+    # Particles & slang
+    'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
+    'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
+    
+    # Nama/Title umum
+    'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
+    'om', 'tante', 'nenek', 'kakek', 'dik', 'bos', 'boss',
+    
+    # Common review words yang tidak informatif
+    'saya', 'kali', 'kalo', 'kalau', 'gimana', 'gimn', 'gini', 'gitu', 'dst',
+    'dll', 'dsb', 'etc', 'tapi', 'tp', 'pdhal', 'padhal', 'meski', 'meskipun',
+    'karena', 'soalnya', 'makanya', 'eh', 'oh', 'ah', 'wow', 'wah', 'duh',
 }
 
 # Combine with English stopwords
@@ -337,7 +360,9 @@ elif page == "📊 Analisis Per Brand":
                                      background_color='white',
                                      colormap='Greens',
                                      stopwords=COMBINED_STOPWORDS,
-                                     max_words=100).generate(positive_text)
+                                     min_font_size=14,
+                                     max_words=80,
+                                     relative_scaling=0.5).generate(positive_text)
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.imshow(wordcloud_pos, interpolation='bilinear')
             ax.axis('off')
@@ -353,7 +378,9 @@ elif page == "📊 Analisis Per Brand":
                                      background_color='white',
                                      colormap='Reds',
                                      stopwords=COMBINED_STOPWORDS,
-                                     max_words=100).generate(negative_text)
+                                     min_font_size=14,
+                                     max_words=80,
+                                     relative_scaling=0.5).generate(negative_text)
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.imshow(wordcloud_neg, interpolation='bilinear')
             ax.axis('off')
