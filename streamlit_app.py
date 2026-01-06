@@ -21,53 +21,50 @@ import os
 
 warnings.filterwarnings('ignore')
 
-# Indonesian stopwords to filter out
+# Indonesian stopwords to filter out - BASED ON CORPUS ANALYSIS
 INDONESIAN_STOPWORDS = {
-    # Preposisi
-    'dan', 'di', 'ke', 'dari', 'untuk', 'dengan', 'pada', 'dalam', 'oleh', 'tentang',
-    'antara', 'sesudah', 'sebelum', 'selama', 'sampai', 'hingga', 'melalui', 'menurut',
-    'disini', 'disana', 'disitu', 'diatas', 'dibawah', 'didepan', 'dibelakang',
+    # TOP FREQUENT NON-MEANINGFUL (dari analisis corpus)
+    'nya', 'di', 'dan', 'yg', 'yang', 'ada', 'saya', 'tidak', 'untuk', 'juga',
+    'sama', 'tapi', 'ga', 'lagi', 'the', 'ini', 'bisa', 'dari', 'saja', 'jadi',
+    'kalau', 'sih', 'kalo', 'dengan', 'aja', 'ke', 'gak', 'cuma', 'pas', 'sekali',
+    'udah', 'hanya', 'karena', 'bgt', 'malah', 'padahal', 'itu', 'agak', 'orang',
+    'sudah', 'lah', 'to', 'cukup', 'terlalu', 'jam', 'and', 'atau', 'of', 'kali',
     
-    # Konjungsi
-    'yang', 'atau', 'tetapi', 'namun', 'sedangkan', 'sementara', 'jika', 'maka',
-    'karena', 'sebab', 'agar', 'supaya', 'lalu', 'kemudian', 'masih', 'sudah',
-    'belum', 'malah', 'justru', 'padahal', 'saat',
+    # Brand names (tidak informatif untuk sentiment)
+    'kopi', 'kenangan', 'starbuck', 'starbucks', 'nako', 'kopken', 'coffee', 'cafe',
     
-    # Pronoun/Kata ganti
-    'saya', 'kami', 'dia', 'mereka', 'ini', 'itu', 'kamu', 'mu', 'ku', 'nya',
-    'ane', 'gue', 'elo', 'situ', 'ente', 'beliau', 'anda', 'yg',
+    # Common location/place words
+    'tempat', 'tempatnya', 'disini', 'disana', 'disitu', 'place', 'mall', 'area',
     
-    # Kata kerja bantu & status
-    'akan', 'telah', 'sedang', 'pernah', 'bisa', 'dapat', 'menjadi', 'ada', 
-    'terjadi', 'adalah', 'seperti', 'begini', 'begitu', 'demikian', 'buat',
+    # Common verbs (terlalu umum)
+    'buat', 'mau', 'beli', 'pesan', 'order', 'bikin', 'minum', 'makan', 'suka',
+    'harus', 'tolong', 'kasih', 'ambil', 'datang', 'pergi', 'pulang', 'kerja',
     
-    # Adjective/Adverb umum
-    'hanya', 'juga', 'sangat', 'cukup', 'amat', 'agak', 'terlalu', 'saja', 'lain',
-    'sama', 'satu', 'dua', 'tiga', 'empat', 'lima', 'banyak', 'sedikit', 'semua',
-    'setiap', 'tiap', 'lagi', 'terus', 'selalu', 'jarang', 'luas', 'iya', 'ya',
+    # Common adjectives (terlalu umum)
+    'enak', 'nyaman', 'bagus', 'baik', 'good', 'nice', 'luas', 'bersih', 'cocok',
+    'oke', 'ok', 'best', 'great', 'lama', 'kurang', 'lebih', 'sangat', 'banget',
     
-    # Particles & slang
-    'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
-    'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
-    'gitu', 'gini', 'gimana', 'gimn', 'kalo', 'kalau', 'kali', 'cuma', 'tapi', 'tp',
-    'aja', 'tdk', 'gk', 'enggak', 'nggak', 'nggax', 'ngak',
+    # Common nouns (tidak spesifik sentiment)
+    'pelayanan', 'harga', 'minuman', 'makanan', 'barista', 'kasir', 'menu', 'rasa',
+    'parkir', 'tukang', 'ngopi', 'nongkrong', 'banyak',
     
-    # Nama/Title umum
-    'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
-    'om', 'tante', 'nenek', 'kakek', 'dik', 'bos', 'boss', 'teman', 'anak',
+    # English common words
+    'the', 'and', 'to', 'of', 'is', 'it', 'in', 'for', 'on', 'with', 'this', 'that',
+    'are', 'was', 'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
+    'could', 'should', 'may', 'might', 'must', 'can', 'very', 'really', 'always',
     
-    # Interjeksi
-    'eh', 'oh', 'ah', 'wow', 'wah', 'duh', 'yay', 'hehe', 'haha', 'wkwk',
+    # Particles & slang lainnya
+    'deh', 'yah', 'ya', 'dong', 'nah', 'lho', 'kok', 'pun', 'pula', 'tuh', 'nih',
+    'gitu', 'gini', 'gimana', 'gimn', 'enggak', 'nggak', 'ngak', 'tp', 'jg', 'tdk',
     
-    # Common words tidak informatif dari wordcloud
-    'soalnya', 'makanya', 'pdhal', 'padhal', 'meski', 'meskipun', 'dst', 'dll',
-    'dsb', 'etc', 'saat', 'ketika', 'waktu', 'hari', 'jam', 'menit', 'detik',
-    'karat', 'meter', 'ekor', 'buah', 'orang', 'tempat', 'toko', 'kopi', 'kenangan',
-    'bersih', 'rasa', 'oke', 'ok', 'good', 'coffee', 'cafe', 'dikasih', 'katanya',
-    'harunya', 'proses', 'tolang', 'terpaksa', 'lama', 'kerja', 'harus', 'perlu',
-    'dulu', 'keluar', 'habis', 'hilang', 'mulai', 'datang', 'pergi', 'pulang',
-    'ambil', 'kasih', 'beri', 'jadi', 'cari', 'lihat', 'bilang', 'tahu', 'ingin',
-    'mau', 'minum', 'makan', 'beli', 'bayar', 'mahal', 'murah', 'bagus', 'jelek',
+    # Nama/Title
+    'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'bang', 'om', 'tante', 'dik', 'bos',
+    
+    # Pronoun
+    'kami', 'dia', 'mereka', 'kamu', 'mu', 'ku', 'ane', 'gue', 'elo', 'anda',
+    
+    # Lainnya
+    'lain', 'dst', 'dll', 'dsb', 'etc', 'waktu', 'hari', 'menit', 'detik',
 }
 
 # Combine dengan English stopwords
