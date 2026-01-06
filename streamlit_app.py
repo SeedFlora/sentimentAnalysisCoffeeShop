@@ -26,24 +26,46 @@ INDONESIAN_STOPWORDS = {
     # Preposisi
     'dan', 'di', 'ke', 'dari', 'untuk', 'dengan', 'pada', 'dalam', 'oleh', 'tentang',
     'antara', 'sesudah', 'sebelum', 'selama', 'sampai', 'hingga', 'melalui', 'menurut',
+    'disini', 'disana', 'disitu', 'diatas', 'dibawah', 'didepan', 'dibelakang',
     
     # Konjungsi
     'yang', 'atau', 'tetapi', 'namun', 'sedangkan', 'sementara', 'jika', 'maka',
-    'karena', 'sebab', 'agar', 'supaya', 'lalu', 'kemudian',
+    'karena', 'sebab', 'agar', 'supaya', 'lalu', 'kemudian', 'masih', 'sudah',
+    'belum', 'malah', 'justru', 'padahal',
     
     # Pronoun/Kata ganti
     'saya', 'kami', 'dia', 'mereka', 'ini', 'itu', 'kamu', 'mu', 'ku', 'nya',
-    'ane', 'gue', 'elo', 'situ', 'ente', 'beliau',
+    'ane', 'gue', 'elo', 'situ', 'ente', 'beliau', 'anda',
     
-    # Kata kerja bantu
-    'akan', 'telah', 'sedang', 'pernah', 'bisa', 'dapat', 'bisa', 'seperti', 'adalah',
-    'menjadi', 'ada', 'terjadi',
+    # Kata kerja bantu & status
+    'akan', 'telah', 'sedang', 'pernah', 'bisa', 'dapat', 'menjadi', 'ada', 
+    'terjadi', 'adalah', 'seperti', 'begini', 'begitu', 'demikian',
     
     # Adjective/Adverb umum
     'hanya', 'juga', 'sangat', 'cukup', 'amat', 'agak', 'terlalu', 'saja', 'lain',
-    'sama', 'satu', 'dua', 'tiga', 'empat', 'lima',
+    'sama', 'satu', 'dua', 'tiga', 'empat', 'lima', 'banyak', 'sedikit', 'semua',
+    'setiap', 'tiap', 'lagi', 'terus', 'selalu', 'jarang',
     
     # Particles & slang
+    'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
+    'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
+    'gitu', 'gini', 'gimana', 'gimn', 'kalo', 'kalau', 'kali', 'cuma', 'tapi', 'tp',
+    
+    # Nama/Title umum
+    'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
+    'om', 'tante', 'nenek', 'kakek', 'dik', 'bos', 'boss', 'teman',
+    
+    # Interjeksi
+    'eh', 'oh', 'ah', 'wow', 'wah', 'duh', 'yay', 'hehe', 'haha', 'wkwk',
+    
+    # Common words tidak informatif
+    'soalnya', 'makanya', 'pdhal', 'padhal', 'meski', 'meskipun', 'dst', 'dll',
+    'dsb', 'etc', 'saat', 'ketika', 'waktu', 'hari', 'jam', 'menit', 'detik',
+    'karat', 'meter', 'ekor', 'buah', 'orang', 'tempat', 'toko',
+}
+
+# Combine with English stopwords
+COMBINED_STOPWORDS = STOPWORDS.union(INDONESIAN_STOPWORDS)
     'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
     'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
     
