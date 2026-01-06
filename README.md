@@ -68,16 +68,40 @@ d:\skripsi angel/
 ├── venv/                                  # Virtual environment
 ├── kopinako_main_analysis.csv            # Kopi Nako reviews dataset
 ├── starbucks_detailed_reviews.csv        # Starbucks reviews dataset
-├── sentiment_analysis.py                 # Main analysis script
+├── Kopi_Kenangan.xlsx                    # Kopi Kenangan reviews dataset
+│
+├── PYTHON SCRIPTS:
+├── sentiment_analysis.py                 # Combined analysis (Kopi Nako + Starbucks)
+├── per_brand_analysis.py                 # Per-brand balancing analysis
+├── per_brand_model_evaluation.py         # Per-brand model evaluation
 ├── explore_csvs.py                       # Data exploration script
 │
-├── OUTPUT FILES:
+├── OUTPUT FILES - COMBINED ANALYSIS:
 ├── model_performance_results.csv         # Model performance comparison
 ├── model_comparison.png                  # Performance visualization
 ├── roc_curve.png                        # ROC curve for best model
 ├── sentiment_distribution.png            # Sentiment distribution charts
 ├── feature_importance_rf.png             # Random Forest top features
 ├── feature_importance_lr.png             # Logistic Regression coefficients
+│
+├── OUTPUT FILES - PER-BRAND ANALYSIS:
+├── per_brand_evaluation_results.csv      # Per-brand metrics (Accuracy, Precision, Recall, F1, AUC)
+├── per_brand_metrics_comparison.png      # Per-brand metrics visualization
+├── per_brand_models_comparison.png       # All 6 models comparison per brand
+├── per_brand_metrics_heatmap.png         # Metrics heatmap visualization
+├── per_brand_f1_radar.png               # F1-Score radar chart
+├── brand_sentiment_before_after.png      # Balance before/after comparison
+├── brand_sentiment_pie_charts.png        # Sentiment distribution pie charts
+├── brand_balance_ratio.png              # Balance ratio improvement chart
+│
+├── BALANCED DATASETS:
+├── kopi_nako_balanced.csv               # Balanced Kopi Nako (1,768 samples)
+├── starbucks_balanced.csv               # Balanced Starbucks (964 samples)
+├── kopi_kenangan_balanced.csv           # Balanced Kopi Kenangan (2,518 samples)
+│
+├── STREAMLIT APP:
+├── streamlit_app.py                     # Interactive dashboard
+├── requirements.txt                      # Python dependencies
 │
 └── README.md                             # This file
 ```
@@ -168,6 +192,76 @@ The script will:
 #### 🚀 Best F1-Score: **Decision Tree** (0.8694)
 - Strong balance between precision and recall
 - Recommended for balanced performance
+
+---
+
+## ☕ Per-Brand Analysis & Metrics
+
+### Per-Brand Model Performance
+
+**KOPI NAKO (1,768 balanced samples)**
+| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
+|-------|----------|-----------|--------|----------|---------|
+| **SVM** ⭐ | **97.74%** | **97.84%** | **97.74%** | **97.74%** | **99.99%** |
+| Random Forest | 97.46% | 97.58% | 97.46% | 97.46% | 99.98% |
+| Logistic Regression | 95.48% | 95.53% | 95.48% | 95.48% | 99.95% |
+| Gradient Boosting | 92.94% | 93.81% | 92.94% | 92.90% | 99.77% |
+| Decision Tree | 92.66% | 93.60% | 92.66% | 92.62% | 99.65% |
+| Naive Bayes | 91.53% | 92.30% | 91.53% | 91.49% | 99.45% |
+
+**STARBUCKS (964 balanced samples)**
+| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
+|-------|----------|-----------|--------|----------|---------|
+| **Gradient Boosting** ⭐ | **95.34%** | **95.38%** | **95.34%** | **95.34%** | **99.88%** |
+| Logistic Regression | 91.71% | 91.71% | 91.71% | 91.71% | 99.65% |
+| SVM | 91.71% | 91.71% | 91.71% | 91.71% | 99.62% |
+| Random Forest | 90.67% | 90.96% | 90.67% | 90.66% | 99.58% |
+| Naive Bayes | 87.56% | 87.98% | 87.56% | 87.53% | 99.12% |
+| Decision Tree | 78.24% | 84.81% | 78.24% | 77.13% | 98.15% |
+
+**KOPI KENANGAN (2,518 balanced samples)**
+| Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
+|-------|----------|-----------|--------|----------|---------|
+| **SVM** ⭐ | **96.43%** | **96.44%** | **96.43%** | **96.43%** | **99.99%** |
+| Logistic Regression | 95.24% | 95.31% | 95.24% | 95.24% | 99.96% |
+| Gradient Boosting | 94.84% | 94.84% | 94.84% | 94.84% | 99.91% |
+| Random Forest | 94.44% | 94.58% | 94.44% | 94.44% | 99.89% |
+| Decision Tree | 92.66% | 92.90% | 92.66% | 92.65% | 99.69% |
+| Naive Bayes | 89.88% | 90.06% | 89.88% | 89.87% | 99.24% |
+
+### Per-Brand Key Insights
+
+**🥇 Kopi Nako - BEST PERFORMANCE**
+- Highest F1-Score: **97.74%** (SVM)
+- Sentiment is most clearly distinguishable
+- Perfect balance: 50% positive, 50% negative
+- **Recommendation**: Deploy SVM model for production
+
+**🥈 Kopi Kenangan - EXCELLENT PERFORMANCE**
+- Highest F1-Score: **96.43%** (SVM)
+- Largest balanced dataset (2,518 samples)
+- Second-best classification results
+- **Recommendation**: Deploy SVM model for production
+
+**🥉 Starbucks - VERY GOOD PERFORMANCE**
+- Highest F1-Score: **95.34%** (Gradient Boosting)
+- Smallest dataset but excellent results
+- Balanced: 50% positive, 50% negative
+- **Recommendation**: Deploy Gradient Boosting model for production
+
+### Per-Brand Visualization Files
+
+📊 **Metrics Visualizations:**
+- `per_brand_metrics_comparison.png` - Accuracy, Precision, Recall, F1 comparison
+- `per_brand_metrics_heatmap.png` - Heatmap of all metrics per brand
+- `per_brand_models_comparison.png` - All 6 models performance per brand
+- `per_brand_f1_radar.png` - Radar chart of F1-Scores across brands
+
+📈 **Balance Visualizations:**
+- `brand_sentiment_before_balancing.png` - Original imbalanced distribution
+- `brand_sentiment_before_after.png` - Before/after balancing comparison
+- `brand_sentiment_pie_charts.png` - Pie charts of sentiment per brand
+- `brand_balance_ratio.png` - Balance improvement metrics
 
 ---
 
