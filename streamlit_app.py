@@ -15,11 +15,27 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.naive_bayes import MultinomialNB
 import joblib
 import warnings
-from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS
 from PIL import Image
 import os
 
 warnings.filterwarnings('ignore')
+
+# Indonesian stopwords to filter out
+INDONESIAN_STOPWORDS = {
+    'dan', 'di', 'ke', 'yang', 'dari', 'untuk', 'adalah', 'dengan', 'akan',
+    'telah', 'saya', 'kami', 'dia', 'mereka', 'ini', 'itu', 'pada', 'atau',
+    'jika', 'maka', 'seperti', 'antara', 'lain', 'juga', 'tidak', 'tetapi',
+    'namun', 'dalam', 'oleh', 'tentang', 'sebelum', 'sesudah', 'selama',
+    'sampai', 'saat', 'ketika', 'sedangkan', 'sementara', 'hanya', 'cuma',
+    'pun', 'pula', 'pun', 'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih',
+    'ah', 'oh', 'eh', 'nih', 'tuh', 'dong', 'nah', 'lho', 'kok', 'dik', 'mas',
+    'pak', 'bu', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
+    'ke', 'ke', 'ke', 'nya', 'ku', 'mu', 'kamu', 'mu', 'nya', 'nya'
+}
+
+# Combine with English stopwords
+COMBINED_STOPWORDS = STOPWORDS.union(INDONESIAN_STOPWORDS)
 
 # Set page config
 st.set_page_config(
@@ -320,6 +336,7 @@ elif page == "📊 Analisis Per Brand":
             wordcloud_pos = WordCloud(width=500, height=400, 
                                      background_color='white',
                                      colormap='Greens',
+                                     stopwords=COMBINED_STOPWORDS,
                                      max_words=100).generate(positive_text)
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.imshow(wordcloud_pos, interpolation='bilinear')
@@ -335,6 +352,7 @@ elif page == "📊 Analisis Per Brand":
             wordcloud_neg = WordCloud(width=500, height=400,
                                      background_color='white',
                                      colormap='Reds',
+                                     stopwords=COMBINED_STOPWORDS,
                                      max_words=100).generate(negative_text)
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.imshow(wordcloud_neg, interpolation='bilinear')
