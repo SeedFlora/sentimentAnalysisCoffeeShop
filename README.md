@@ -214,6 +214,12 @@ The script will:
 
 <div align="center">
 
+![Model Comparison](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/model_comparison.png)
+
+</div>
+
+<div align="center">
+
 | Rank | 🥇 Model | Accuracy | Precision | Recall | F1-Score | AUC-ROC |
 |:----:|:---------|:--------:|:---------:|:------:|:--------:|:-------:|
 | 🥇 | **Decision Tree** | **88.96%** | **87.56%** | **88.96%** | **86.94%** | 70.84% |
@@ -248,6 +254,12 @@ The script will:
 ## ☕ Per-Brand Analysis & Metrics
 
 ### 🎯 Per-Brand Model Performance
+
+<div align="center">
+
+![Per-Brand Metrics Comparison](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/per_brand_metrics_comparison.png)
+
+</div>
 
 <details>
 <summary><b>KOPI NAKO</b> (1,768 balanced samples) - Click to expand</summary>
@@ -301,6 +313,12 @@ The script will:
 
 <div align="center">
 
+![Per-Brand F1 Radar](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/per_brand_f1_radar.png)
+
+</div>
+
+<div align="center">
+
 | Rank | Brand | Best F1-Score | Best Model | Status |
 |:----:|:------|:-------------:|:-----------|:-------|
 | 🥇 | **Kopi Nako** | **97.74%** | SVM | 🟢 EXCELLENT |
@@ -323,6 +341,14 @@ The script will:
 - `brand_sentiment_pie_charts.png` - 🥧 Pie charts of sentiment per brand
 - `brand_balance_ratio.png` - 📈 Balance improvement metrics
 
+<div align="center">
+
+![Brand Balance Ratio](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/brand_balance_ratio.png)
+
+![Sentiment Before After](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/brand_sentiment_before_after.png)
+
+</div>
+
 ---
 
 ## 🔍 Key Findings
@@ -340,11 +366,32 @@ Actual Positive:     5 (FN)             269 (TP)
 - False Positive Rate: 69.8% - Sometimes misclassifies negative as positive
 
 ### 2️⃣ Sentiment Distribution
+
+<div align="center">
+
+![Sentiment Distribution](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/sentiment_distribution.png)
+
+</div>
+
 - **High Imbalance**: 86.3% positive vs 13.7% negative
 - **Implication**: Models are biased toward positive sentiment
 - **Recommendation**: Consider balanced sampling or class weights for production
 
 ### 3️⃣ Top Features for Sentiment Classification
+
+<div align="center">
+
+![Feature Importance - Random Forest](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/feature_importance_rf.png)
+
+![Feature Importance - Logistic Regression](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/feature_importance_lr.png)
+
+</div>
+
+<div align="center">
+
+![Sentiment Distribution](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/sentiment_distribution.png)
+
+</div>
 
 **Words Most Associated with POSITIVE Sentiment:**
 - 🟢 **enak** (delicious)
@@ -434,6 +481,12 @@ Meaning: 90.46% probability of correctly ranking
          a positive review higher than negative
 Use: Best for probability-based predictions
 ```
+
+<div align="center">
+
+![ROC Curve](https://raw.githubusercontent.com/SeedFlora/sentimentAnalysisCoffeeShop/main/roc_curve.png)
+
+</div>
 
 ### 🔢 Confusion Matrix Explained
 
