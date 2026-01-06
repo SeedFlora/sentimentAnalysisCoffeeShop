@@ -1,0 +1,129 @@
+# 🚀 DEPLOYMENT QUICK REFERENCE
+
+## 3 LANGKAH DEPLOY KE STREAMLIT CLOUD (18 menit)
+
+### LANGKAH 1: BUAT GITHUB REPO (3 menit)
+```
+1. Buka https://github.com/signup
+2. Sign up or login
+3. Click + → New repository
+4. Name: sentiment-analysis-kopi
+5. Visibility: PUBLIC ✅
+6. Click Create
+7. Copy HTTPS URL (https://github.com/YOUR_USERNAME/sentiment-analysis-kopi.git)
+```
+
+### LANGKAH 2: PUSH KE GITHUB (5 menit)
+```powershell
+# Buka PowerShell
+cd "D:\skripsi angel"
+
+# Setup git (first time)
+git config --global user.name "Your Name"
+git config --global user.email "your.email@gmail.com"
+
+# Push code
+git init
+git add .
+git commit -m "Initial: Sentiment Analysis"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/sentiment-analysis-kopi.git
+git push -u origin main
+
+# Masukkan username & password (gunakan Personal Access Token sebagai password)
+```
+
+### LANGKAH 3: DEPLOY DI STREAMLIT (5 menit + 3 menit tunggu)
+```
+1. Buka https://streamlit.io/cloud
+2. Click "Sign in with GitHub"
+3. Authorize Streamlit
+4. Click "New app"
+5. Pilih:
+   - GitHub account: Pilih akun Anda
+   - Repository: sentiment-analysis-kopi
+   - Branch: main
+   - File path: streamlit_app.py
+6. Click "Deploy"
+7. Tunggu 2-3 menit...
+8. DONE! 🎉
+```
+
+---
+
+## ✅ HASIL AKHIR
+
+App Anda akan live di:
+```
+https://sentiment-analysis-kopi.streamlit.app
+```
+
+---
+
+## ❓ PERTANYAAN YANG SERING DIAJUKAN
+
+### Q: Bagaimana jika error saat push?
+A: Gunakan Personal Access Token (bukan password biasa):
+1. GitHub Settings → Developer settings → Personal access tokens
+2. Generate new token (pilih: repo, workflow)
+3. Copy token
+4. Paste sebagai password saat git push
+
+### Q: Berapa lama loading first time?
+A: 30-60 detik (first load), setelah itu 2-5 detik
+
+### Q: Bisa handle berapa users?
+A: Streamlit Community Cloud: ~50 concurrent users (gratis)
+
+### Q: Bagaimana update app setelah deploy?
+A: Cukup push ke GitHub, Streamlit auto-update dalam 1-2 menit
+
+### Q: Data aman?
+A: Data tidak disimpan di server Streamlit, hanya di memory saat session
+
+---
+
+## 🔧 TROUBLESHOOTING
+
+| Error | Solution |
+|-------|----------|
+| "Unable to deploy" | Push ke GitHub dulu, pastikan repo PUBLIC |
+| "ModuleNotFoundError" | Tambahkan package ke requirements.txt |
+| "FileNotFoundError" | Pastikan CSV files ada di GitHub |
+| App timeout | Check logs, reduce complexity, add caching |
+
+---
+
+## 📁 IMPORTANT FILES
+
+✅ **HARUS ADA:**
+- `streamlit_app.py` (main app)
+- `requirements.txt` (all packages listed)
+- CSV files (kopi_nako_balanced.csv, etc)
+
+✅ **OPTIONAL:**
+- Model files (*.pkl)
+- Visualization files (*.png)
+- README.md
+
+---
+
+## 💡 PRO TIPS
+
+1. **First time slow?** Normal! Add caching:
+```python
+@st.cache_data
+def load_data():
+    return pd.read_csv('file.csv')
+```
+
+2. **Want custom domain?** Upgrade to Streamlit Cloud Pro
+
+3. **Want to embed?** Use iframe:
+```html
+<iframe src="https://sentiment-analysis-kopi.streamlit.app" width="100%" height="800"></iframe>
+```
+
+---
+
+**That's it! Enjoy your live dashboard! 🎉**

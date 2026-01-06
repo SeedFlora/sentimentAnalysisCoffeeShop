@@ -1,0 +1,19 @@
+Brand,Model,Accuracy,Precision,Recall,F1-Score
+Kopi Nako,Logistic Regression,95.48,95.53,95.48,95.48
+Kopi Nako,Naive Bayes,91.53,92.3,91.53,91.49
+Kopi Nako,SVM,97.74,97.84,97.74,97.74
+Kopi Nako,Decision Tree,92.66,93.6,92.66,92.62
+Kopi Nako,Random Forest,97.46,97.58,97.46,97.46
+Kopi Nako,Gradient Boosting,92.94,93.81,92.94,92.9
+Starbucks,Logistic Regression,91.71,91.71,91.71,91.71
+Starbucks,Naive Bayes,87.56,87.98,87.56,87.53
+Starbucks,SVM,91.71,91.71,91.71,91.71
+Starbucks,Decision Tree,78.24,84.81,78.24,77.13
+Starbucks,Random Forest,90.67,90.96,90.67,90.66
+Starbucks,Gradient Boosting,95.34,95.38,95.34,95.34
+Kopi Kenangan,Logistic Regression,95.24,95.31,95.24,95.24
+Kopi Kenangan,Naive Bayes,89.88,90.06,89.88,89.87
+Kopi Kenangan,SVM,96.43,96.44,96.43,96.43
+Kopi Kenangan,Decision Tree,92.66,92.9,92.66,92.65
+Kopi Kenangan,Random Forest,94.44,94.58,94.44,94.44
+Kopi Kenangan,Gradient Boosting,94.84,94.84,94.84,94.84

@@ -1,0 +1,4 @@
+Brand,Before_Positive,Before_Negative,Before_Total,Before_Ratio,After_Positive,After_Negative,After_Total,After_Ratio,Status
+Kopi Nako,884,116,1000,13.12%,884,884,1768,100.00%,✅ Balanced
+Starbucks,482,101,583,20.95%,482,482,964,100.00%,✅ Balanced
+Kopi Kenangan,1259,192,1451,15.25%,1259,1259,2518,100.00%,✅ Balanced
