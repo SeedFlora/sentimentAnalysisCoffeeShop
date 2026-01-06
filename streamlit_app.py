@@ -18,6 +18,7 @@ import warnings
 from wordcloud import WordCloud, STOPWORDS
 from PIL import Image
 import os
+import re
 
 warnings.filterwarnings('ignore')
 
@@ -29,46 +30,74 @@ INDONESIAN_STOPWORDS = {
     'kalau', 'sih', 'kalo', 'dengan', 'aja', 'ke', 'gak', 'cuma', 'pas', 'sekali',
     'udah', 'hanya', 'karena', 'bgt', 'malah', 'padahal', 'itu', 'agak', 'orang',
     'sudah', 'lah', 'to', 'cukup', 'terlalu', 'jam', 'and', 'atau', 'of', 'kali',
+    'tp', 'jg', 'tdk', 'gk', 'dah', 'nih', 'tuh', 'dong', 'deh', 'sih', 'ya',
+    'kan', 'kok', 'lho', 'nah', 'pun', 'pula', 'banget', 'bgt', 'sangat', 'sekali',
     
     # Brand names (tidak informatif untuk sentiment)
     'kopi', 'kenangan', 'starbuck', 'starbucks', 'nako', 'kopken', 'coffee', 'cafe',
+    'kopinako', 'kopikenangan', 'starbuckscoffee',
     
     # Common location/place words
     'tempat', 'tempatnya', 'disini', 'disana', 'disitu', 'place', 'mall', 'area',
+    'sini', 'sana', 'situ',
     
     # Common verbs (terlalu umum)
     'buat', 'mau', 'beli', 'pesan', 'order', 'bikin', 'minum', 'makan', 'suka',
     'harus', 'tolong', 'kasih', 'ambil', 'datang', 'pergi', 'pulang', 'kerja',
+    'pake', 'pakai', 'coba', 'cobain', 'kesini', 'kesana',
     
-    # Common adjectives (terlalu umum)
+    # Common adjectives (terlalu umum)  
     'enak', 'nyaman', 'bagus', 'baik', 'good', 'nice', 'luas', 'bersih', 'cocok',
     'oke', 'ok', 'best', 'great', 'lama', 'kurang', 'lebih', 'sangat', 'banget',
+    'mantap', 'mantab', 'hebat', 'keren', 'asik', 'asyik',
     
     # Common nouns (tidak spesifik sentiment)
     'pelayanan', 'harga', 'minuman', 'makanan', 'barista', 'kasir', 'menu', 'rasa',
-    'parkir', 'tukang', 'ngopi', 'nongkrong', 'banyak',
+    'parkir', 'tukang', 'ngopi', 'nongkrong', 'banyak', 'pelayan', 'service',
     
     # English common words
     'the', 'and', 'to', 'of', 'is', 'it', 'in', 'for', 'on', 'with', 'this', 'that',
     'are', 'was', 'be', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
     'could', 'should', 'may', 'might', 'must', 'can', 'very', 'really', 'always',
+    'place', 'one', 'love', 'like', 'so', 'but', 'just', 'get', 'go', 'come',
     
-    # Particles & slang lainnya
-    'deh', 'yah', 'ya', 'dong', 'nah', 'lho', 'kok', 'pun', 'pula', 'tuh', 'nih',
-    'gitu', 'gini', 'gimana', 'gimn', 'enggak', 'nggak', 'ngak', 'tp', 'jg', 'tdk',
+    # Pronoun
+    'kami', 'dia', 'mereka', 'kamu', 'mu', 'ku', 'ane', 'gue', 'gw', 'elo', 'lo',
+    'anda', 'kita', 'kalian', 'beliau',
     
     # Nama/Title
     'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'bang', 'om', 'tante', 'dik', 'bos',
     
-    # Pronoun
-    'kami', 'dia', 'mereka', 'kamu', 'mu', 'ku', 'ane', 'gue', 'elo', 'anda',
-    
-    # Lainnya
-    'lain', 'dst', 'dll', 'dsb', 'etc', 'waktu', 'hari', 'menit', 'detik',
+    # Lainnya - kata tidak baku/singkatan
+    'yaa', 'yahh', 'yah', 'yg', 'dgn', 'utk', 'krn', 'sm', 'lg', 'aj', 'bngt',
+    'bgt', 'gt', 'gtu', 'gni', 'gmn', 'gmna', 'emg', 'emang', 'mmg', 'memang',
+    'kyk', 'kayak', 'kek', 'trs', 'terus', 'trus', 'abis', 'habis', 'udh', 'sdh',
+    'blm', 'belum', 'msh', 'masih', 'bs', 'gbs', 'gabisa', 'gaada', 'gada',
+    'dr', 'pd', 'dl', 'dulu', 'skrg', 'sekarang', 'kmrn', 'kemarin', 'bsk', 'besok',
+    'org', 'ornag', 'tmpt', 'tmpat', 'bkn', 'bukan', 'krg', 'kurang',
+    'dst', 'dll', 'dsb', 'etc', 'waktu', 'hari', 'menit', 'detik',
 }
 
 # Combine dengan English stopwords
 COMBINED_STOPWORDS = STOPWORDS.union(INDONESIAN_STOPWORDS)
+
+def clean_text_for_wordcloud(text):
+    """Clean text for wordcloud - remove non-meaningful words"""
+    # Convert to lowercase
+    text = text.lower()
+    # Remove URLs
+    text = re.sub(r'http\S+|www\S+', '', text)
+    # Remove email
+    text = re.sub(r'\S+@\S+', '', text)
+    # Remove numbers
+    text = re.sub(r'\d+', '', text)
+    # Remove special characters except spaces
+    text = re.sub(r'[^\w\s]', ' ', text)
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text).strip()
+    # Remove single characters
+    text = ' '.join([word for word in text.split() if len(word) > 2])
+    return text
     'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
     'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
     
@@ -380,14 +409,15 @@ elif page == "📊 Analisis Per Brand":
     with col1:
         st.markdown("#### Positive Reviews Words")
         try:
-            positive_text = ' '.join(df[df['sentiment'] == 'positive']['text'].values).lower()
+            positive_text = ' '.join(df[df['sentiment'] == 'positive']['text'].values)
+            positive_text = clean_text_for_wordcloud(positive_text)
             wordcloud_pos = WordCloud(width=500, height=400, 
                                      background_color='white',
                                      colormap='Greens',
                                      stopwords=COMBINED_STOPWORDS,
-                                     min_font_size=14,
-                                     max_words=80,
-                                     relative_scaling=0.5).generate(positive_text)
+                                     min_font_size=12,
+                                     max_words=60,
+                                     collocations=False).generate(positive_text)
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.imshow(wordcloud_pos, interpolation='bilinear')
             ax.axis('off')
@@ -398,14 +428,15 @@ elif page == "📊 Analisis Per Brand":
     with col2:
         st.markdown("#### Negative Reviews Words")
         try:
-            negative_text = ' '.join(df[df['sentiment'] == 'negative']['text'].values).lower()
+            negative_text = ' '.join(df[df['sentiment'] == 'negative']['text'].values)
+            negative_text = clean_text_for_wordcloud(negative_text)
             wordcloud_neg = WordCloud(width=500, height=400,
                                      background_color='white',
                                      colormap='Reds',
                                      stopwords=COMBINED_STOPWORDS,
-                                     min_font_size=14,
-                                     max_words=80,
-                                     relative_scaling=0.5).generate(negative_text)
+                                     min_font_size=12,
+                                     max_words=60,
+                                     collocations=False).generate(negative_text)
             fig, ax = plt.subplots(figsize=(8, 6))
             ax.imshow(wordcloud_neg, interpolation='bilinear')
             ax.axis('off')
