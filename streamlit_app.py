@@ -380,7 +380,7 @@ elif page == "📊 Analisis Per Brand":
     with col1:
         st.markdown("#### Positive Reviews Words")
         try:
-            positive_text = ' '.join(df[df['sentiment'] == 'positive']['text'].values)
+            positive_text = ' '.join(df[df['sentiment'] == 'positive']['text'].values).lower()
             wordcloud_pos = WordCloud(width=500, height=400, 
                                      background_color='white',
                                      colormap='Greens',
@@ -398,7 +398,7 @@ elif page == "📊 Analisis Per Brand":
     with col2:
         st.markdown("#### Negative Reviews Words")
         try:
-            negative_text = ' '.join(df[df['sentiment'] == 'negative']['text'].values)
+            negative_text = ' '.join(df[df['sentiment'] == 'negative']['text'].values).lower()
             wordcloud_neg = WordCloud(width=500, height=400,
                                      background_color='white',
                                      colormap='Reds',
