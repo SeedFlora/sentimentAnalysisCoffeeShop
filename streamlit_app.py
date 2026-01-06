@@ -31,40 +31,46 @@ INDONESIAN_STOPWORDS = {
     # Konjungsi
     'yang', 'atau', 'tetapi', 'namun', 'sedangkan', 'sementara', 'jika', 'maka',
     'karena', 'sebab', 'agar', 'supaya', 'lalu', 'kemudian', 'masih', 'sudah',
-    'belum', 'malah', 'justru', 'padahal',
+    'belum', 'malah', 'justru', 'padahal', 'saat',
     
     # Pronoun/Kata ganti
     'saya', 'kami', 'dia', 'mereka', 'ini', 'itu', 'kamu', 'mu', 'ku', 'nya',
-    'ane', 'gue', 'elo', 'situ', 'ente', 'beliau', 'anda',
+    'ane', 'gue', 'elo', 'situ', 'ente', 'beliau', 'anda', 'yg',
     
     # Kata kerja bantu & status
     'akan', 'telah', 'sedang', 'pernah', 'bisa', 'dapat', 'menjadi', 'ada', 
-    'terjadi', 'adalah', 'seperti', 'begini', 'begitu', 'demikian',
+    'terjadi', 'adalah', 'seperti', 'begini', 'begitu', 'demikian', 'buat',
     
     # Adjective/Adverb umum
     'hanya', 'juga', 'sangat', 'cukup', 'amat', 'agak', 'terlalu', 'saja', 'lain',
     'sama', 'satu', 'dua', 'tiga', 'empat', 'lima', 'banyak', 'sedikit', 'semua',
-    'setiap', 'tiap', 'lagi', 'terus', 'selalu', 'jarang',
+    'setiap', 'tiap', 'lagi', 'terus', 'selalu', 'jarang', 'luas', 'iya', 'ya',
     
     # Particles & slang
     'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
     'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
     'gitu', 'gini', 'gimana', 'gimn', 'kalo', 'kalau', 'kali', 'cuma', 'tapi', 'tp',
+    'aja', 'tdk', 'gk', 'enggak', 'nggak', 'nggax', 'ngak',
     
     # Nama/Title umum
     'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
-    'om', 'tante', 'nenek', 'kakek', 'dik', 'bos', 'boss', 'teman',
+    'om', 'tante', 'nenek', 'kakek', 'dik', 'bos', 'boss', 'teman', 'anak',
     
     # Interjeksi
     'eh', 'oh', 'ah', 'wow', 'wah', 'duh', 'yay', 'hehe', 'haha', 'wkwk',
     
-    # Common words tidak informatif
+    # Common words tidak informatif dari wordcloud
     'soalnya', 'makanya', 'pdhal', 'padhal', 'meski', 'meskipun', 'dst', 'dll',
     'dsb', 'etc', 'saat', 'ketika', 'waktu', 'hari', 'jam', 'menit', 'detik',
-    'karat', 'meter', 'ekor', 'buah', 'orang', 'tempat', 'toko',
+    'karat', 'meter', 'ekor', 'buah', 'orang', 'tempat', 'toko', 'kopi', 'kenangan',
+    'bersih', 'rasa', 'oke', 'ok', 'good', 'coffee', 'cafe', 'dikasih', 'katanya',
+    'harunya', 'proses', 'tolang', 'terpaksa', 'lama', 'kerja', 'harus', 'perlu',
+    'dulu', 'keluar', 'habis', 'hilang', 'mulai', 'datang', 'pergi', 'pulang',
+    'ambil', 'kasih', 'beri', 'jadi', 'cari', 'lihat', 'bilang', 'tahu', 'ingin',
+    'mau', 'minum', 'makan', 'beli', 'bayar', 'mahal', 'murah', 'bagus', 'jelek',
 }
 
-# Combine with English stopwords
+# Combine dengan English stopwords
 COMBINED_STOPWORDS = STOPWORDS.union(INDONESIAN_STOPWORDS)
     'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
     'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
