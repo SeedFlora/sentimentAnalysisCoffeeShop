@@ -98,21 +98,6 @@ def clean_text_for_wordcloud(text):
     # Remove single characters
     text = ' '.join([word for word in text.split() if len(word) > 2])
     return text
-    'aja', 'kan', 'lah', 'deh', 'yah', 'ya', 'sih', 'dong', 'nah', 'lho', 'kok',
-    'pun', 'pula', 'tuh', 'nih', 'gak', 'tidak', 'jg', 'tdk', 'hrs', 'bgt',
-    
-    # Nama/Title umum
-    'pak', 'bu', 'mas', 'mbak', 'bro', 'kak', 'adik', 'kakak', 'abang', 'bang',
-    'om', 'tante', 'nenek', 'kakek', 'dik', 'bos', 'boss',
-    
-    # Common review words yang tidak informatif
-    'saya', 'kali', 'kalo', 'kalau', 'gimana', 'gimn', 'gini', 'gitu', 'dst',
-    'dll', 'dsb', 'etc', 'tapi', 'tp', 'pdhal', 'padhal', 'meski', 'meskipun',
-    'karena', 'soalnya', 'makanya', 'eh', 'oh', 'ah', 'wow', 'wah', 'duh',
-}
-
-# Combine with English stopwords
-COMBINED_STOPWORDS = STOPWORDS.union(INDONESIAN_STOPWORDS)
 
 # Set page config
 st.set_page_config(
