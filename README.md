@@ -11,8 +11,8 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3.11+-green.svg?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg?style=flat-square)
-![Models](https://img.shields.io/badge/ML%20Models-6-orange.svg?style=flat-square)
-![Accuracy](https://img.shields.io/badge/Best%20Accuracy-88.96%25-success.svg?style=flat-square)
+![Models](https://img.shields.io/badge/Models-ML%20%2B%20IndoBERT-orange.svg?style=flat-square)
+![Accuracy](https://img.shields.io/badge/Best%20Accuracy-92.75%25-success.svg?style=flat-square)
 ![Datasets](https://img.shields.io/badge/Brands%20Analyzed-3-blue.svg?style=flat-square)
 
 **Advanced NLP & Machine Learning | Streamlit Dashboard | Production-Ready**
@@ -28,6 +28,7 @@
 | Section | Link |
 |---------|------|
 | 🎯 Overview | [View](#-overview) |
+| ✅ Latest Revision Results | [View](#-latest-reviewer-ready-results) |
 | 📊 Dataset | [View](#-dataset-description) |
 | 📁 Structure | [View](#-project-structure) |
 | 🚀 Quick Start | [View](#-quick-start) |
@@ -50,11 +51,11 @@ This project implements a **comprehensive sentiment analysis system** for Indone
 - ☕ **Starbucks** (583 reviews)  
 - ☕ **Kopi Kenangan** (1,451 reviews)
 
-The system uses **6 machine learning algorithms** to classify customer reviews as **positive** or **negative** sentiment with **88.96% accuracy**.
+The revised reviewer-ready experiment uses **classical machine learning baselines plus IndoBERT** to classify customer reviews as **positive** or **negative** sentiment. The best revised holdout result is **92.75% accuracy / 0.9275 weighted F1** using **IndoBERT**.
 
 ### 🎓 What You'll Learn
 - ✨ Text preprocessing & NLP for Indonesian language
-- 🤖 Train & evaluate 6 different ML models
+- 🤖 Train & evaluate classical ML models and IndoBERT
 - 📊 Comprehensive evaluation metrics (Accuracy, Precision, Recall, F1, AUC-ROC, Confusion Matrix)
 - 🎨 Professional data visualization with Matplotlib & Seaborn
 - 🚀 Deploy interactive dashboard with Streamlit
@@ -62,9 +63,83 @@ The system uses **6 machine learning algorithms** to classify customer reviews a
 
 ---
 
+## ✅ Latest Reviewer-Ready Results
+
+Use these revised files for the manuscript response:
+
+- `revised_absa_pipeline.py`
+- `revised_indobert_evaluation.py`
+- `revised_outputs/REVISED_ANALYSIS_SUMMARY.md`
+- `revised_outputs/revised_model_comparison_with_indobert.csv`
+- `REVISI_REVIEWER_YANG_SUDAH_DILAKUKAN.md`
+- `REVISION_STATUS.md`
+
+### Final Dataset
+
+| Brand Alias | Brand Source | Reviews |
+|---|---|---:|
+| Global Brand | Starbucks | 583 |
+| National Brand | Kopi Kenangan | 1,451 |
+| Local Brand | Kopi Nako | 1,000 |
+| **Total** | **3 brands** | **3,034** |
+
+### Revised Holdout Model Comparison
+
+| Model | Accuracy | Weighted F1 | Macro F1 |
+|---|---:|---:|---:|
+| **IndoBERT** (`indobenchmark/indobert-base-p1`) | **0.9275** | **0.9275** | **0.8449** |
+| SVM | 0.9242 | 0.9230 | 0.8327 |
+| Random Forest | 0.9061 | 0.9077 | 0.8060 |
+| Naive Bayes | 0.8929 | 0.8962 | 0.7850 |
+| Logistic Regression | 0.8748 | 0.8842 | 0.7743 |
+| Gradient Boosting | 0.8089 | 0.8320 | 0.7007 |
+| Decision Tree | 0.7051 | 0.7508 | 0.6131 |
+
+### Revised 5-Fold Cross-Validation
+
+CV was run for the reviewer-requested core models:
+
+| Model | Mean Accuracy | Mean Weighted F1 | Mean Macro F1 |
+|---|---:|---:|---:|
+| SVM | 0.9212 | 0.9182 | 0.8183 |
+| Naive Bayes | 0.8945 | 0.8961 | 0.7806 |
+| Decision Tree | 0.7073 | 0.7522 | 0.6089 |
+
+### IndoBERT Run
+
+The completed IndoBERT experiment used CUDA on an NVIDIA GeForce RTX 3070 Ti Laptop GPU.
+
+```bash
+python revised_indobert_evaluation.py --epochs 3 --batch-size 16 --eval-batch-size 32 --max-length 128 --no-save-model --log-every 25
+```
+
+### Important Revision Notes
+
+- The older **Decision Tree 88.96%** result is retained only as historical exploratory output.
+- The revised pipeline fixes the previous leakage risk by applying oversampling only to the training split.
+- Decision Tree is now positioned as an interpretable baseline.
+- SVM is the strongest classical ML model.
+- IndoBERT is the strongest overall model in the revised holdout comparison.
+- Neutral domain terms such as `coffee` and `kopi` were removed from the revised frequency table.
+
+---
+
 ## � Quick Start
 
-### Option 1: Run Locally (2 minutes)
+### Option 1: Run Revised Reviewer Pipeline
+```bash
+cd d:\skripsi angel
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python revised_absa_pipeline.py
+```
+
+### Option 2: Run IndoBERT on GPU/CPU
+```bash
+python revised_indobert_evaluation.py --epochs 3 --batch-size 16 --eval-batch-size 32 --max-length 128 --no-save-model --log-every 25
+```
+
+### Option 3: Run Historical Local Analysis
 ```bash
 # 1. Clone repository
 cd d:\skripsi angel
@@ -81,7 +156,7 @@ python sentiment_analysis.py
 # 5. View results (PNG files generated automatically)
 ```
 
-### Option 2: Deploy to Streamlit Cloud (3 minutes)
+### Option 4: Deploy to Streamlit Cloud (3 minutes)
 ```bash
 # Go to https://streamlit.io/cloud
 # Sign in with GitHub
@@ -185,20 +260,35 @@ source venv/bin/activate
 
 ### Step 4: Install Dependencies
 ```bash
-pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org pandas numpy matplotlib seaborn scikit-learn nltk openpyxl
+pip install -r requirements.txt
 ```
 
 ---
 
 ## 💻 Usage
 
-### Run Full Analysis
+### Run Revised Reviewer Analysis
+```bash
+python revised_absa_pipeline.py
+python revised_indobert_evaluation.py --epochs 3 --batch-size 16 --eval-batch-size 32 --max-length 128 --no-save-model --log-every 25
+```
+
+### Run Historical Analysis
 ```bash
 python sentiment_analysis.py
 ```
 
-### Expected Output
-The script will:
+### Revised Expected Output
+The revised scripts will:
+1. Standardize all 3 brand datasets into 3,034 reviews
+2. Run explicit rule-based ABSA aspect extraction
+3. Train and evaluate classical ML baselines
+4. Run 5-fold stratified cross-validation for core baselines
+5. Fine-tune IndoBERT for sentiment classification
+6. Generate revised tables, metrics, confusion matrices, and manuscript notes under `revised_outputs/`
+
+### Historical Expected Output
+The historical script will:
 1. Load both CSV datasets
 2. Clean and preprocess text data
 3. Extract TF-IDF features
@@ -213,7 +303,11 @@ The script will:
 
 ---
 
-## 📈 Model Performance
+## 📈 Historical Model Performance
+
+> The section below is retained for traceability of the original exploratory run.
+> For the revised manuscript and reviewer response, use
+> [Latest Reviewer-Ready Results](#-latest-reviewer-ready-results).
 
 ### 🏆 Overall Rankings (Combined Dataset: 1,583 reviews)
 
