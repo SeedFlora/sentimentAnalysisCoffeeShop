@@ -158,7 +158,7 @@ def train_models():
     
     brands_data = {
         'Kopi Nako': (nako, SVC(kernel='linear', random_state=42)),
-        'Starbucks': (kenangan, GradientBoostingClassifier(n_estimators=50, max_depth=5, random_state=42)),
+        'Starbucks': (starbucks, GradientBoostingClassifier(n_estimators=50, max_depth=5, random_state=42)),
         'Kopi Kenangan': (kenangan, SVC(kernel='linear', random_state=42))
     }
     

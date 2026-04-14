@@ -1,0 +1,2 @@
+Model,Accuracy,Precision_Weighted,Recall_Weighted,F1_Weighted,Precision_Macro,Recall_Macro,F1_Macro,Train_Size_Original,Train_Size_After_Oversampling,Test_Size
+Decision Tree,0.7051070840197694,0.8672338806436631,0.7051070840197694,0.7507975141335089,0.6229407823294286,0.7472009291521486,0.6131045852873416,2427,4200,607

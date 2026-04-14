@@ -1,0 +1,5 @@
+Actual,Predicted,Count
+negative,negative,60
+negative,positive,22
+positive,negative,22
+positive,positive,503

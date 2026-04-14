@@ -1,0 +1,16 @@
+brand,brand_alias,aspect,aspect_total,brand_aspect_mentions,aspect_share_percent,positive,negative,positive_percent,negative_percent
+Kopi Kenangan,National Brand,ambiance,547,1619,33.79,514,33,93.97,6.03
+Kopi Kenangan,National Brand,packaging,17,1619,1.05,9,8,52.94,47.06
+Kopi Kenangan,National Brand,price,93,1619,5.74,76,17,81.72,18.28
+Kopi Kenangan,National Brand,service,382,1619,23.59,283,99,74.08,25.92
+Kopi Kenangan,National Brand,taste,580,1619,35.82,495,85,85.34,14.66
+Kopi Nako,Local Brand,ambiance,622,1681,37.0,563,59,90.51,9.49
+Kopi Nako,Local Brand,packaging,8,1681,0.48,7,1,87.5,12.5
+Kopi Nako,Local Brand,price,119,1681,7.08,98,21,82.35,17.65
+Kopi Nako,Local Brand,service,306,1681,18.2,275,31,89.87,10.13
+Kopi Nako,Local Brand,taste,626,1681,37.24,570,56,91.05,8.95
+Starbucks,Global Brand,ambiance,148,372,39.78,144,4,97.3,2.7
+Starbucks,Global Brand,packaging,10,372,2.69,4,6,40.0,60.0
+Starbucks,Global Brand,price,20,372,5.38,15,5,75.0,25.0
+Starbucks,Global Brand,service,101,372,27.15,55,46,54.46,45.54
+Starbucks,Global Brand,taste,93,372,25.0,76,17,81.72,18.28

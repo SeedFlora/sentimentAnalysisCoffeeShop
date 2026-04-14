@@ -1,6 +1,11 @@
 # ☕ Sentiment Analysis: Coffee Shop Reviews
 ## Indonesian Coffee Chain Reviews Classification using Machine Learning
 
+> Reviewer revision note: use `revised_absa_pipeline.py` and the files in
+> `revised_outputs/` for the revised manuscript. The older metrics below are
+> retained as historical exploratory output and are superseded by the revised
+> 3-brand pipeline with training-only oversampling and 5-fold CV.
+
 <div align="center">
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)

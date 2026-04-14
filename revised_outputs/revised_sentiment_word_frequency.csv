@@ -1,0 +1,49 @@
+brand,brand_alias,sentiment,rank,word,count
+Kopi Kenangan,National Brand,negative,1,slow,57
+Kopi Kenangan,National Brand,negative,2,bad,18
+Kopi Kenangan,National Brand,negative,3,less,18
+Kopi Kenangan,National Brand,negative,4,inconsistent,9
+Kopi Kenangan,National Brand,negative,5,not friendly,9
+Kopi Kenangan,National Brand,negative,6,disappointed,8
+Kopi Kenangan,National Brand,negative,7,not delicious,7
+Kopi Kenangan,National Brand,negative,8,expensive,3
+Kopi Kenangan,National Brand,positive,1,delicious,326
+Kopi Kenangan,National Brand,positive,2,cozy,305
+Kopi Kenangan,National Brand,positive,3,good,255
+Kopi Kenangan,National Brand,positive,4,friendly,246
+Kopi Kenangan,National Brand,positive,5,clean,117
+Kopi Kenangan,National Brand,positive,6,favorite,82
+Kopi Kenangan,National Brand,positive,7,spacious,82
+Kopi Kenangan,National Brand,positive,8,fast,50
+Kopi Nako,Local Brand,negative,1,less,21
+Kopi Nako,Local Brand,negative,2,expensive,14
+Kopi Nako,Local Brand,negative,3,slow,12
+Kopi Nako,Local Brand,negative,4,bad,4
+Kopi Nako,Local Brand,negative,5,inconsistent,4
+Kopi Nako,Local Brand,negative,6,not delicious,4
+Kopi Nako,Local Brand,negative,7,not friendly,4
+Kopi Nako,Local Brand,negative,8,disappointed,3
+Kopi Nako,Local Brand,positive,1,delicious,568
+Kopi Nako,Local Brand,positive,2,cozy,286
+Kopi Nako,Local Brand,positive,3,good,253
+Kopi Nako,Local Brand,positive,4,friendly,237
+Kopi Nako,Local Brand,positive,5,favorite,64
+Kopi Nako,Local Brand,positive,6,spacious,61
+Kopi Nako,Local Brand,positive,7,clean,39
+Kopi Nako,Local Brand,positive,8,worth,39
+Starbucks,Global Brand,negative,1,bad,18
+Starbucks,Global Brand,negative,2,slow,16
+Starbucks,Global Brand,negative,3,less,11
+Starbucks,Global Brand,negative,4,not friendly,8
+Starbucks,Global Brand,negative,5,disappointed,3
+Starbucks,Global Brand,negative,6,expensive,3
+Starbucks,Global Brand,negative,7,inconsistent,2
+Starbucks,Global Brand,negative,8,not delicious,1
+Starbucks,Global Brand,positive,1,good,83
+Starbucks,Global Brand,positive,2,cozy,73
+Starbucks,Global Brand,positive,3,friendly,68
+Starbucks,Global Brand,positive,4,delicious,36
+Starbucks,Global Brand,positive,5,favorite,21
+Starbucks,Global Brand,positive,6,spacious,14
+Starbucks,Global Brand,positive,7,clean,7
+Starbucks,Global Brand,positive,8,fast,4

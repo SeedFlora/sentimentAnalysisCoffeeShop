@@ -1,0 +1,25 @@
+Model,Actual,Predicted,Count
+Decision Tree,negative,negative,66
+Decision Tree,negative,positive,16
+Decision Tree,positive,negative,163
+Decision Tree,positive,positive,362
+Naive Bayes,negative,negative,56
+Naive Bayes,negative,positive,26
+Naive Bayes,positive,negative,39
+Naive Bayes,positive,positive,486
+SVM,negative,negative,56
+SVM,negative,positive,26
+SVM,positive,negative,20
+SVM,positive,positive,505
+Logistic Regression,negative,negative,63
+Logistic Regression,negative,positive,19
+Logistic Regression,positive,negative,57
+Logistic Regression,positive,positive,468
+Random Forest,negative,negative,57
+Random Forest,negative,positive,25
+Random Forest,positive,negative,32
+Random Forest,positive,positive,493
+Gradient Boosting,negative,negative,63
+Gradient Boosting,negative,positive,19
+Gradient Boosting,positive,negative,97
+Gradient Boosting,positive,positive,428

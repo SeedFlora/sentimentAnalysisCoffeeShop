@@ -1,0 +1,2 @@
+Model,Accuracy,Precision_Weighted,Recall_Weighted,F1_Weighted,Precision_Macro,Recall_Macro,F1_Macro,Train_Size,Test_Size,Epochs,Max_Length,Batch_Size,Device
+indobenchmark/indobert-base-p1,0.9275123558484349,0.9275123558484349,0.9275123558484349,0.9275123558484349,0.8449012775842044,0.8449012775842044,0.8449012775842044,2427,607,3,128,16,cuda
